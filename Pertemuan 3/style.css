@@ -1,10 +1,22 @@
+/* Ini judul */
 h1{
     color: red;
     text-align: center;
+    font-weight: bolder;
 }
 
+ /* Ini Body */
 p{
     text-align: justify;
     color: blueviolet;
     font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-style: italic;
+    text-indent: 5ch;
+    text-decoration: wavy;
+    text-transform: capitalize;
+}
+
+body{
+    background-color: rgba(0, 0, 0, 0.259);
 }
