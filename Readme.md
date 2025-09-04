@@ -6,7 +6,7 @@
 ---
 
 ## 📑 Isi Repository
-- 📝 Laporan Tugas  
+- 📝 Laporan Tugas
 - 📂 Dokumentasi Project  
 - 💡 Catatan Penting  
 
