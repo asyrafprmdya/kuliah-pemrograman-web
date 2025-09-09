@@ -201,3 +201,496 @@
 - Copyright line dengan tahun
 - Personal quote: Menunjukkan personality dan humor
 - `<b>` untuk emphasize quote
+
+# Analisis Kode CSS Per Baris - Website Biografi Asyraf Pramudya
+
+## Global Styles & Reset
+
+### Body & Universal Settings
+```css
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #e0f7fa, #e1f5fe, #ede7f6);
+  color: #333;
+  scroll-behavior: smooth;
+}
+```
+- `font-family: 'Montserrat', sans-serif;`: Font utama dari Google Fonts dengan fallback ke sans-serif
+- `margin: 0; padding: 0;`: Reset default browser spacing untuk consistency
+- `background: linear-gradient(135deg, ...)`: Gradient diagonal (135°) dengan warna biru muda ke ungu soft
+- `color: #333;`: Warna teks default abu-abu gelap (lebih soft dari hitam)
+- `scroll-behavior: smooth;`: Animasi smooth ketika navigasi dengan anchor links
+
+### Section Layout
+```css
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+section p {
+  text-align: justify;
+}
+```
+- `max-width: 1000px;`: Batasan lebar maksimal untuk readability
+- `margin: 0 auto;`: Center alignment horizontal dengan margin otomatis
+- `padding: 2rem 1rem;`: Vertical 32px, horizontal 16px untuk breathing space
+- `text-align: center;`: Default center alignment untuk headings
+- `section p`: Override paragraf menjadi justify untuk readability yang lebih baik
+
+## Header & Navigation
+
+### Header Styling
+```css
+header {
+  background: linear-gradient(90deg, #3f51b5, #00bcd4);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: slideDown 0.8s ease;
+}
+```
+- `background: linear-gradient(90deg, #3f51b5, #00bcd4);`: Gradient horizontal indigo ke cyan
+- `position: sticky; top: 0;`: Header tetap terlihat saat scroll (modern alternative untuk fixed)
+- `z-index: 1000;`: Layer priority tinggi agar tetap di atas konten lain
+- `box-shadow: 0 4px 8px rgba(0,0,0,0.2);`: Drop shadow untuk depth effect
+- `animation: slideDown 0.8s ease;`: Animasi masuk dari atas
+
+### Header Animation
+```css
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+```
+- `translateY(-100%)`: Start position di atas viewport (tersembunyi)
+- `opacity: 0`: Mulai transparan
+- Transisi ke posisi normal dengan fade-in effect
+
+### Navigation Links
+```css
+nav a {
+  color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease;
+}
+```
+- `text-decoration: none;`: Hapus default underline
+- `position: relative;`: Untuk positioning pseudo-element underline
+- `transition: color 0.3s ease;`: Smooth color change pada hover
+
+### Navigation Hover Effect
+```css
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  left: 0;
+  bottom: -4px;
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: #80deea;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+```
+- `::after`: Pseudo-element untuk custom underline
+- `width: 0`: Start dengan lebar 0 (invisible)
+- `bottom: -4px`: Posisi 4px di bawah text
+- Pada hover: warna berubah ke light blue dan underline expand ke 100%
+
+## Profile Picture
+
+### Base Profile Picture
+```css
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 1rem auto;
+  border: 4px solid #00bcd4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease;
+}
+```
+- `border-radius: 50%;`: Membuat gambar circular (bulat sempurna)
+- `object-fit: cover;`: Crop gambar proporsional untuk mengisi container
+- `display: block; margin: 1rem auto;`: Block element dengan center alignment
+- `border: 4px solid #00bcd4;`: Border cyan untuk accent
+- Multiple transitions untuk smooth interactive effects
+
+### Profile Picture Hover
+```css
+.profile-pic:hover {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+```
+- `scale(1.08)`: Perbesar 8% pada hover
+- `rotate(3deg)`: Rotasi kecil untuk playful effect
+- Enhanced shadow untuk lebih dramatic
+
+### Fade In Animation
+```css
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+```
+- Kombinasi fade-in dengan scale animation
+- Mulai dari 80% size dengan opacity 0
+
+## Project Cards
+
+### Project Grid Layout
+```css
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+```
+- `display: grid;`: Modern CSS Grid layout
+- `repeat(auto-fit, minmax(280px, 1fr))`: Responsive columns, minimum 280px width
+- `gap: 1rem;`: Spacing antar grid items
+
+### Card Base Styling
+```css
+.card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+```
+- `position: relative; overflow: hidden;`: Setup untuk pseudo-element animations
+- Soft border-radius dan subtle shadow untuk modern card design
+
+### Card Hover Animation
+```css
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(63,81,181,0.15) 20%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.5s ease;
+  z-index: 0;
+}
+
+.card:hover::before {
+  transform: scale(1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+```
+- `::before`: Pseudo-element untuk background effect
+- Radial gradient overlay yang expand pada hover
+- `translateY(-8px)`: Lift effect saat hover
+- `z-index: 0`: Background effect di belakang content
+
+## Skills Section
+
+### Skills Container
+```css
+.skills {
+  text-align: left;
+}
+```
+- Override default center alignment untuk skill bars
+
+### Progress Bar Container
+```css
+.skills .bar {
+  background: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0.5rem 0 1rem;
+}
+```
+- `background: #ddd;`: Light gray background untuk track
+- `border-radius: 20px;`: Rounded corners untuk modern look
+- `overflow: hidden;`: Ensure rounded corners pada span element
+
+### Progress Bar Fill
+```css
+.skills .bar span {
+  display: block;
+  height: 14px;
+  background: linear-gradient(90deg, #3f51b5, #00bcd4);
+  border-radius: 20px;
+  animation: growBar 2s ease forwards;
+}
+```
+- `height: 14px;`: Fixed height untuk consistency
+- Gradient background matching header colors
+- `animation: growBar 2s ease forwards;`: Growing animation
+
+### Progress Bar Animation
+```css
+@keyframes growBar {
+  from { width: 0; }
+}
+```
+- Simple animation dari 0 width ke inline-defined width
+- `forwards`: Maintain final state setelah animation selesai
+
+## Running Schedule Table
+
+### Table Base Styling
+```css
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  animation: fadeIn 1.2s ease;
+}
+```
+- `border-collapse: collapse;`: Menggabungkan borders untuk clean look
+- `font-size: 0.95rem;`: Slightly smaller untuk fit more content
+
+### Table Cells
+```css
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  text-align: center;
+}
+```
+- Consistent padding dan border untuk semua cells
+- Center alignment untuk tabular data
+
+### Table Header
+```css
+.schedule-table th {
+  background: #3f51b5;
+  color: #fff;
+  text-transform: uppercase;
+}
+```
+- Indigo background matching theme
+- `text-transform: uppercase;`: Professional table header styling
+
+### Table Row Styling
+```css
+.schedule-table tr:nth-child(even) {
+  background: #e3f2fd;
+}
+
+.schedule-table tr:hover {
+  background: #b3e5fc;
+  transform: scale(1.02);
+  transition: 0.3s ease;
+}
+```
+- `nth-child(even)`: Zebra striping untuk readability
+- Hover effect dengan scale dan color change
+- Subtle interactive feedback
+
+## Contact Cards
+
+### Contact Grid
+```css
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+```
+- Responsive grid dengan minimum 250px per card
+- Consistent gap spacing
+
+### Contact Card Styling
+```css
+.contact-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 6px solid #00bcd4;
+  position: relative;
+  overflow: hidden;
+}
+```
+- `border-left: 6px solid #00bcd4;`: Accent border untuk visual hierarchy
+- Larger padding untuk comfortable spacing
+
+### Contact Card Animations
+```css
+.contact-card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,188,212,0.05);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover::after {
+  transform: translateX(0);
+}
+
+.contact-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+```
+- Slide-in overlay effect dari kiri ke kanan
+- Combined lift dan scale effect pada hover
+
+### Contact Links
+```css
+.contact-card a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-card a:hover {
+  color: #00bcd4;
+  text-decoration: underline;
+}
+```
+- Consistent styling dengan theme colors
+- Clear hover states untuk UX
+
+## Footer
+
+### Footer Styling
+```css
+footer {
+  background: #3f51b5;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-style: italic;
+  letter-spacing: 1px;
+  animation: fadeIn 1.5s ease;
+}
+```
+- Matching indigo background dengan header
+- `font-style: italic;`: Stylistic choice untuk quotes
+- `letter-spacing: 1px;`: Improved readability untuk footer text
+
+## About Section
+
+### About Card Layout
+```css
+.about-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+```
+- `display: flex; align-items: center;`: Horizontal layout dengan vertical centering
+- `gap: 2rem;`: Modern CSS gap property untuk spacing
+- Larger border-radius untuk softer appearance
+
+### About Card Profile Picture
+```css
+.about-card .profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #00c851;
+  object-fit: cover;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+```
+- Different size (150px) untuk about section
+- Green border (`#00c851`) untuk variation
+- Specific styling untuk context
+
+### About Text Styling
+```css
+.about-card .about-text {
+  flex: 1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+}
+```
+- `flex: 1;`: Take remaining space dalam flex container
+- `line-height: 1.6;`: Optimal untuk readability
+- Slightly larger font size untuk importance
+
+## Gallery Section
+
+### Gallery Grid
+```css
+.gallery-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+```
+- `display: flex;`: Flexible layout untuk gallery items
+- `justify-content: center;`: Center alignment untuk gallery
+- `flex-wrap: wrap;`: Responsive wrapping pada mobile
+
+### Gallery Card
+```css
+.gallery-card {
+  text-align: center;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 250px;
+}
+
+.gallery-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+```
+- Consistent card styling dengan project cards
+- `max-width: 250px;`: Limit size untuk better proportion
+- Responsive image dengan rounded corners
+
