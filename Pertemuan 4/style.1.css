@@ -281,7 +281,7 @@ footer {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  border: 4px solid #00c851;
+  border: 4px solid #00bcd4;
   object-fit: cover;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
@@ -327,5 +327,77 @@ footer {
   border-radius: 8px;
   margin-bottom: 0.5rem;
 }
+/* Layout untuk gallery */
+.gallery-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 kolom sejajar */
+    gap: 20px; /* jarak antar kartu */
+    margin-top: 20px;
+}
+
+/* Styling tiap card */
+.gallery-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 15px;
+}
+
+/* Styling gambar */
+.gallery-img {
+    width: 100%;
+    height: 200px; /* tinggi seragam */
+    object-fit: cover; /* biar gambar nggak gepeng */
+    border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+    .gallery-cards {
+        grid-template-columns: repeat(2, 1fr); /* tablet: 2 kolom */
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-cards {
+        grid-template-columns: 1fr; /* HP: 1 kolom */
+    }
+}
+.btn-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #3f51b5, #00bcd4); /* biru gradasi sesuai tema */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-link:hover {
+    background: linear-gradient(135deg, #283593, #0097a7); /* biru lebih gelap saat hover */
+    transform: scale(1.05); /* efek hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.btn-link:active {
+    transform: scale(0.98); /* efek ditekan */
+}
+
+@media (max-width: 600px) {
+    .btn-link {
+        width: 100%;   /* tombol full width di layar kecil */
+        font-size: 14px;
+        padding: 14px;
+    }
+}
+
+
 
 
