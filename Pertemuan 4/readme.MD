@@ -152,28 +152,6 @@ onclick="window.location.href='gallery.html'"
 
 ---
 
-## Analisis Fungsionalitas Website
-
-### 🎯 **Tujuan Website**
-- Menampilkan portfolio profesional
-- Showcase skill programming dan design
-- Menunjukkan kepribadian melalui hobi (lari, musik, game)
-- Memberikan informasi kontak yang jelas
-
-### 📊 **Content Strategy**
-1. **Personal Branding**: Foto profil dan quote personal
-2. **Technical Skills**: Progress bar untuk keahlian programming
-3. **Project Showcase**: Deskripsi project PHP dan Laravel
-4. **Lifestyle**: Jadwal lari yang menunjukkan dedikasi
-5. **Accessibility**: Multiple contact methods (email, GitHub, Instagram)
-
-### 🎨 **Design Philosophy**
-- **Modern Minimalist**: Clean layout dengan white space yang cukup
-- **Color Psychology**: Biru untuk kepercayaan dan profesionalisme
-- **Visual Hierarchy**: Typography dan spacing yang jelas
-- **Interactive Elements**: Hover effects dan smooth transitions
-
----
 
 ## Penjelasan CSS Penting
 
