@@ -1,0 +1,1 @@
+document.write("Ini adalah Penggunaan Javascript Eksternal");
