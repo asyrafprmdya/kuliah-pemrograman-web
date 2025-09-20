@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Sederhana</title>
+  <style>
+    .calc {
+      width: 200px;
+      margin: 20px auto;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      text-align: right;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    button {
+      width: 45px;
+      height: 45px;
+      margin: 2px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calc">
+    <input type="text" id="display" disabled>
+    <br>
+    <button onclick="tampilan()">C</button>
+    <button onclick="nilai('/')">/</button>
+    <button onclick="nilai('*')">*</button>
+    <button onclick="nilai('-')">-</button>
+    <button onclick="nilai('+')">+</button>
+    <button onclick="calculate()">=</button>
+
+    <br>
+    <button onclick="nilai('7')">7</button>
+    <button onclick="nilai('8')">8</button>
+    <button onclick="nilai('9')">9</button>
+
+    <br>
+    <button onclick="nilai('4')">4</button>
+    <button onclick="nilai('5')">5</button>
+    <button onclick="nilai('6')">6</button>
+
+    <br>
+    <button onclick="nilai('1')">1</button>
+    <button onclick="nilai('2')">2</button>
+    <button onclick="nilai('3')">3</button>
+    <button onclick="nilai('0')">0</button>
+    <button onclick="nilai('.')">.</button>
+    <br>
+
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+
+    function nilai(val) {
+      display.value += val;
+    }
+
+    function tampilan() {
+      display.value = "";
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    }
+  </script>
+</body>
+
+</html>
