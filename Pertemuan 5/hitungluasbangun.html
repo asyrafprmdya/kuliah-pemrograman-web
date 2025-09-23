@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Luas Bangun Ruang</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hitung Luas Bangun Ruang</h1>
+
+    <h3>1. Volume Kubus</h3> <br>
+    <label>Sisi : <input type="number" id="sisi"></label>
+    <button onclick="hitungKubus()">Hitung</button>
+    <p id="hasilKubus"></p>
+
+    <h3>2. Volume Balok</h3>
+    <label>Panjang: <input type="number" id="panjang"></label>
+    <label>Lebar: <input type="number" id="lebar"></label>
+    <label>Tinggi: <input type="number" id="tinggi"></label>
+    <button onclick="hitungBalok()">Hitung</button>
+    <p id="hasilBalok"></p>
+
+    <h3>3. Volume Tabung</h3>
+    <label>Jari-jari: <input type="number" id="jari"></label>
+    <label>Tinggi: <input type="number" id="tinggiTabung"></label>
+    <button onclick="hitungTabung()">Hitung</button>
+    <p id="hasilTabung"></p>
+
+</body>
+<script>
+    function hitungKubus() {
+        let sisi = document.getElementById("sisi").value;
+        let volume = sisi * sisi * sisi;
+        document.getElementById("hasilKubus").innerText = "Volume Kubus = " + volume;
+    }
+
+    function hitungBalok() {
+        let p = document.getElementById("panjang").value;
+        let l = document.getElementById("lebar").value;
+        let t = document.getElementById("tinggi").value;
+        let volume = p * l * t;
+        document.getElementById("hasilBalok").innerText = "Volume Balok = " + volume;
+    }
+
+    function hitungTabung() {
+        let r = document.getElementById("jari").value;
+        let t = document.getElementById("tinggiTabung").value;
+        let volume = Math.PI * r * r * t;
+        document.getElementById("hasilTabung").innerText = "Volume Tabung = " + volume.toFixed(2);
+    }
+</script>
+
+</html>

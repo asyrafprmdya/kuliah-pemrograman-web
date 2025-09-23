@@ -36,7 +36,7 @@
     <button onclick="nilai('*')">*</button>
     <button onclick="nilai('-')">-</button>
     <button onclick="nilai('+')">+</button>
-    <button onclick="calculate()">=</button>
+    <button onclick="hitung()">=</button>
 
     <br>
     <button onclick="nilai('7')">7</button>
@@ -69,7 +69,7 @@
       display.value = "";
     }
 
-    function calculate() {
+    function hitung() {
       try {
         display.value = eval(display.value);
       } catch {
