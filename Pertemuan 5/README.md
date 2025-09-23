@@ -14,7 +14,7 @@
 - Baris 10: `    document.write("Dua kali dari ", b, " adalah ", Perkalian_Dengan2(b), "<br>");` → Bagian kode HTML/JS lainnya.
 - Baris 11: `    document.write("Nilai dari a adalah " + a);` → Bagian kode HTML/JS lainnya.
 - Baris 12: `</script>` → Bagian kode HTML/JS lainnya.
-- ![deklarasiglobal.png](Screenshot/dekglobal.png)
+- ![deklarasiglobal.png](Screvent.png)
 ## deklarasilokal.html
 
 - Baris 1: `<!DOCTYPE html>` → Deklarasi tipe dokumen HTML.
@@ -37,6 +37,7 @@
 - Baris 18: `    </script>` → Bagian kode HTML/JS lainnya.
 - Baris 19: `</body>` → Akhir dari body HTML.
 - Baris 20: `</html>` → Tag penutup HTML.
+- ![deklarasilokal.png](Screenshot/deklokal.png)
 
 ## deklarasivar.html
 
@@ -46,6 +47,7 @@
 - Baris 4: `        VariabelKu = 1234;` → Operasi atau pernyataan di JavaScript.
 - Baris 5: `        document.write(VariabelKu * VariabelKu2);  ` → Bagian kode HTML/JS lainnya.
 - Baris 6: `    </script>` → Bagian kode HTML/JS lainnya.
+- ![variabel.png](Screenshot/variabel.png)
 
 ## file.js
 
@@ -124,6 +126,7 @@
 - Baris 69: `</script>` → Bagian kode HTML/JS lainnya.
 - Baris 70: `` → Baris kosong untuk pemisah.
 - Baris 71: `</html>` → Tag penutup HTML.
+- ![hitungluas.png](Screenshot/hitungluas.png)
 
 ## input.html
 
@@ -138,6 +141,8 @@
 - Baris 9: `            </script>` → Bagian kode HTML/JS lainnya.
 - Baris 10: `        </body>` → Akhir dari body HTML.
 - Baris 11: `</html>` → Tag penutup HTML.
+- ![input.png](Screenshot/input1.png)
+- ![input.png](Screenshot/input2.png)
 
 ## kalkulator.html
 
@@ -223,6 +228,8 @@
 - Baris 80: `</body>` → Akhir dari body HTML.
 - Baris 81: `` → Baris kosong untuk pemisah.
 - Baris 82: `</html>` → Tag penutup HTML.
+- ![kalkulator.png](Screenshot/kalkulator1.png)
+- ![kalkulator.png](Screenshot/kalkulator2.png)
 
 ## konversi.html
 
@@ -255,6 +262,7 @@
 - Baris 27: `</BODY>` → Bagian kode HTML/JS lainnya.
 - Baris 28: `` → Baris kosong untuk pemisah.
 - Baris 29: `</HTML>` → Bagian kode HTML/JS lainnya.
+- ![konversi.png](Screenshot/konversi.png)
 
 ## operatoraritmatika.html
 
@@ -278,6 +286,7 @@
 - Baris 18: `</body>` → Akhir dari body HTML.
 - Baris 19: `` → Baris kosong untuk pemisah.
 - Baris 20: `</html>` → Tag penutup HTML.
+- ![aritmatika.png](Screenshot/aritmatika.png)
 
 ## operatorlogic.html
 
@@ -300,6 +309,8 @@
 - Baris 17: `</body>` → Akhir dari body HTML.
 - Baris 18: `` → Baris kosong untuk pemisah.
 - Baris 19: `</html>` → Tag penutup HTML.
+- ![logika.png](Screenshot/logika1.png)
+- ![logika.png](Screenshot/logika2.png)
 
 ## percobaan1.html
 
@@ -320,6 +331,7 @@
 - Baris 15: `</BODY>` → Bagian kode HTML/JS lainnya.
 - Baris 16: `` → Baris kosong untuk pemisah.
 - Baris 17: `</HTML>` → Bagian kode HTML/JS lainnya.
+- ![percobaan1.png](Screenshot/percobaan1.png)
 
 ## percobaanbutton.html
 
@@ -346,6 +358,7 @@
 - Baris 21: `</body>` → Akhir dari body HTML.
 - Baris 22: `` → Baris kosong untuk pemisah.
 - Baris 23: `</html>` → Tag penutup HTML.
+- ![event.png](Screenshot/event.png)
 
 ## percobaaneksternal.html
 
@@ -361,6 +374,7 @@
 - Baris 10: `<SCRIPT LANGUAGE=Javascript SRC=file.js> </SCRIPT>` → Bagian kode HTML/JS lainnya.
 - Baris 11: `</body>` → Akhir dari body HTML.
 - Baris 12: `</html>` → Tag penutup HTML.
+- ![eksternal.png](Screenshot/eksternal.png)
 
 ## percobaansederhana.html
 
@@ -375,6 +389,7 @@
 - Baris 9: `        </script>` → Bagian kode HTML/JS lainnya.
 - Baris 10: `    </body>` → Akhir dari body HTML.
 - Baris 11: `</html>` → Tag penutup HTML.
+- ![sederhana.png](Screenshot/sederhana.png)
 
 ## tugas1.html
 
@@ -413,6 +428,7 @@
 - Baris 33: `</body>` → Akhir dari body HTML.
 - Baris 34: `` → Baris kosong untuk pemisah.
 - Baris 35: `</html>` → Tag penutup HTML.
+- ![tugas1.png](Screenshot/tugas1.png)
 
 ## tugas2.html
 
@@ -441,6 +457,7 @@
 - Baris 23: `</body>` → Akhir dari body HTML.
 - Baris 24: `` → Baris kosong untuk pemisah.
 - Baris 25: `</html>` → Tag penutup HTML.
+- ![tugas2.png](Screenshot/tugas2.png)
 
 ## warning.html
 
@@ -460,6 +477,7 @@
 - Baris 14: `</BODY>` → Bagian kode HTML/JS lainnya.
 - Baris 15: `` → Baris kosong untuk pemisah.
 - Baris 16: `</HTML>` → Bagian kode HTML/JS lainnya.
+- ![warning.png](Screenshot/warning1.png)
 
 ## warning2.html
 
@@ -478,4 +496,6 @@
 - Baris 13: `</body>` → Akhir dari body HTML.
 - Baris 14: `` → Baris kosong untuk pemisah.
 - Baris 15: `</html>` → Tag penutup HTML.
+- ![warning2.png](Screenshot/warning12.png)
+- ![warning2.png](Screenshot/warning13.png)
 
