@@ -178,6 +178,33 @@
         <p>Asyraf Pramudya Azhar AB - 2025</p>
         <p><b>"Semua masalah akan saya selesaikan, tapi saya lari dan ngopi dahulu"</b></p>
     </footer>
+    <script>
+        
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const sections = document.querySelectorAll('section, .card, .gallery-card, .contact-card');
+
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.8;
+            sections.forEach(sec => {
+                const secTop = sec.getBoundingClientRect().top;
+                if (secTop < triggerBottom) {
+                    sec.classList.add('show');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        checkScroll();
+    </script>
+
 
 </body>
 
