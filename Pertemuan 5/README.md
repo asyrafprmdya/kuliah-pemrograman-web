@@ -14,7 +14,7 @@
 - Baris 10: `    document.write("Dua kali dari ", b, " adalah ", Perkalian_Dengan2(b), "<br>");` → Bagian kode HTML/JS lainnya.
 - Baris 11: `    document.write("Nilai dari a adalah " + a);` → Bagian kode HTML/JS lainnya.
 - Baris 12: `</script>` → Bagian kode HTML/JS lainnya.
-- ![deklarasiglobal.png](Screvent.png)
+- ![deklarasiglobal.png](Screenshot/dekglobal.png)
 ## deklarasilokal.html
 
 - Baris 1: `<!DOCTYPE html>` → Deklarasi tipe dokumen HTML.
