@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Oemah Senara</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-sage-primary {
+            background-color: #8A9A5B;
+        }
+
+        .bg-sage-light {
+            background-color: #F0F2EF;
+        }
+
+        .bg-sage-darker {
+            background-color: #6B7B4B;
+        }
+
+        .text-sage-primary {
+            color: #8A9A5B;
+        }
+
+        .text-sage-darker {
+            color: #4A5D23;
+        }
+
+        .border-sage-primary {
+            border-color: #8A9A5B;
+        }
+
+        .hover\:bg-sage-darker:hover {
+            background-color: #6B7B4B;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #8A9A5B;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .masonry-grid .gallery-item {
+            height: 280px;
+        }
+
+        .masonry-item-tall {
+            grid-row: span 2;
+            height: auto;
+        }
+
+        .masonry-item-wide {
+            grid-column: span 2;
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                gap: 1.5rem;
+            }
+
+            .masonry-grid .gallery-item {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .masonry-grid .gallery-item {
+                height: 180px;
+            }
+
+            .masonry-item-tall {
+                grid-row: span 1;
+                height: 180px;
+            }
+
+            .masonry-item-wide {
+                grid-column: span 2;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .masonry-grid {
+                gap: 0.5rem;
+            }
+
+            .masonry-grid .gallery-item {
+                height: 150px;
+            }
+
+            .masonry-item-tall {
+                height: 150px;
+            }
+
+            .masonry-item-wide {
+                height: 180px;
+            }
+        }
+
+        .suggestion-form {
+            background: linear-gradient(135deg, rgba(138, 154, 91, 0.05) 0%, rgba(240, 242, 239, 0.8) 100%);
+        }
+
+        textarea:focus,
+        input:focus {
+            outline: none;
+            border-color: #8A9A5B;
+            box-shadow: 0 0 0 3px rgba(138, 154, 91, 0.1);
+        }
+
+        .instagram-icon {
+            transition: all 0.3s ease;
+        }
+
+        .instagram-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+    </style>
+</head>
+
+<body class="bg-sage-light text-gray-800 antialiased">
+
+    <nav class="glass-effect shadow-lg fixed top-0 w-full z-50 border-b border-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/"
+                    class="text-2xl sm:text-3xl font-display font-bold text-sage-darker tracking-tight">
+                    Oemah Senara
+                </a>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/"
+                        class="nav-link text-base text-gray-700 hover:text-sage-darker transition-colors duration-300 font-medium">Home</a>
+                    <a href="/menu"
+                        class="nav-link text-base text-gray-700 hover:text-sage-darker transition-colors duration-300 font-medium">Menu</a>
+                    <a href="#"
+                        class="nav-link text-base text-gray-700 hover:text-sage-darker transition-colors duration-300 font-medium active">Galeri</a>
+                    <a href="/#kontak"
+                        class="nav-link text-base text-gray-700 hover:text-sage-darker transition-colors duration-300 font-medium">Kontak</a>
+                </div>
+
+                <button id="mobileMenuBtn" class="lg:hidden text-gray-700 focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="mobileMenu" class="hidden lg:hidden mt-6 pb-4 space-y-4">
+                <a href="/"
+                    class="block text-gray-700 hover:text-sage-darker transition py-2 font-medium">Home</a>
+                <a href="/menu"
+                    class="block text-gray-700 hover:text-sage-darker transition py-2 font-medium">Menu</a>
+                <a href="/galeri" class="block text-gray-700 hover:text-sage-darker transition py-2 font-medium">Galeri</a>
+                <a href="index.blade.php#kontak"
+                    class="block text-gray-700 hover:text-sage-darker transition py-2 font-medium">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-16 bg-gradient-to-br from-white to-sage-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block mb-4 float-animation">
+                <svg class="w-16 h-16 text-sage-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                    </path>
+                </svg>
+            </div>
+            <p class="text-sage-primary font-semibold text-sm sm:text-base tracking-widest uppercase mb-4">Galeri Kami
+            </p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-sage-darker mb-6">Momen Berharga
+            </h1>
+            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">Koleksi suasana hangat, kelezatan, dan
+                kebahagiaan yang tercipta di Oemah Senara</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-sage-darker mb-4">Suasana Oemah Senara</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Nikmati keindahan dan kenyamanan ruang kami yang dirancang
+                    untuk memberikan pengalaman tak terlupakan</p>
+            </div>
+
+            <div class="masonry-grid">
+                <div class="gallery-item">
+                    <img src="7.png" alt="Detail interior Oemah Senara" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="text-white font-semibold">Sudut Tenang</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item masonry-item-tall">
+                    <img src="6.png" alt="Pengunjung bersantai" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="text-white font-semibold">Waktu Santai</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="8.png" alt="Kursi dan meja outdoor" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="text-white font-semibold">Area Outdoor</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="3.png" alt="Koleksi musik" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="text-white font-semibold">Koleksi Musik</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item masonry-item-wide">
+                    <img src="10.png" alt="Artist melukis" loading="lazy">
+                    <div class="gallery-overlay">
+                        <p class="text-white font-semibold">Ruang Kreatif</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <svg class="w-10 h-10 text-sage-primary instagram-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    <h2 class="text-3xl sm:text-4xl font-display font-bold text-sage-darker">Cerita dari Pelanggan</h2>
+                </div>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-6">Momen indah yang diabadikan oleh tamu-tamu kami</p>
+                <a href="https://www.instagram.com/oemah.senara/" target="_blank"
+                    class="inline-flex items-center gap-2 text-sage-primary hover:text-sage-darker font-semibold transition">
+                    <span>Tag kami di Instagram</span>
+                    <span class="text-xl">@oemah.senara</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-item h-64"><img src="1.png" alt="Pelanggan Oemah Senara" loading="lazy"></div>
+                <div class="gallery-item h-64"><img src="2.png" alt="Pelanggan Oemah Senara" loading="lazy"></div>
+                <div class="gallery-item h-64"><img src="4.png" alt="Pelanggan Oemah Senara" loading="lazy"></div>
+                <div class="gallery-item h-64"><img src="5.png" alt="Pelanggan Oemah Senara" loading="lazy"></div>
+                <div class="gallery-item h-64"><img src="9.png" alt="Pelanggan Oemah Senara" loading="lazy"></div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-sage-darker mb-4">Kata Mereka</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Testimoni dari pelanggan setia kami</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-sage-primary/20 flex items-center justify-center mr-3">
+                            <span class="text-sage-darker font-bold text-lg">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sage-darker">Andi Pratama</h4>
+                            <div class="flex text-yellow-500">
+                                <span>⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"Tempatnya sangat nyaman dan instagramable! Kopinya
+                        enak banget, terutama Baileys Coffee. Suasananya bikin betah berlama-lama."</p>
+                </div>
+
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-sage-primary/20 flex items-center justify-center mr-3">
+                            <span class="text-sage-darker font-bold text-lg">S</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sage-darker">Siti Nurhaliza</h4>
+                            <div class="flex text-yellow-500">
+                                <span>⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"Hotways Wings-nya juara! Pedas pas dan bumbunya
+                        meresap. Tempatnya juga asri, cocok buat nongkrong atau kerja sambil ngopi."</p>
+                </div>
+
+                <div class="testimonial-card bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-sage-primary/20 flex items-center justify-center mr-3">
+                            <span class="text-sage-darker font-bold text-lg">R</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sage-darker">Rizky Mahendra</h4>
+                            <div class="flex text-yellow-500">
+                                <span>⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"Pelayanannya ramah, menu makanan dan minumannya
+                        variatif. Summer Punch-nya segar banget, pas buat cuaca Makassar. Recommended!"</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <svg class="w-16 h-16 text-sage-primary mx-auto mb-4 float-animation" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                        </path>
+                    </svg>
+                    <h2 class="text-3xl sm:text-4xl font-display font-bold text-sage-darker mb-4">Kotak Saran</h2>
+                    <p class="text-gray-600">Masukan Anda sangat berarti untuk kami. Bantu kami menjadi lebih baik!</p>
+                </div>
+
+                <form class="suggestion-form rounded-2xl shadow-lg p-8 border border-sage-primary/20">
+                    <div class="mb-6">
+                        <label for="name" class="block text-sage-darker font-semibold mb-2">Nama</label>
+                        <input type="text" id="name"
+                            class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 transition-all duration-300"
+                            placeholder="Nama Anda (opsional)">
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="email" class="block text-sage-darker font-semibold mb-2">Email</label>
+                        <input type="email" id="email"
+                            class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 transition-all duration-300"
+                            placeholder="email@example.com (opsional)">
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="suggestion" class="block text-sage-darker font-semibold mb-2">Saran & Kritik <span
+                                class="text-red-500">*</span></label>
+                        <textarea id="suggestion" rows="5"
+                            class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 transition-all duration-300 resize-none"
+                            placeholder="Tulis saran atau kritik Anda di sini..." required></textarea>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sage-darker font-semibold mb-3">Rating Pengalaman Anda</label>
+                        <div class="flex gap-2">
+                            <button type="button"
+                                class="rating-star text-3xl text-gray-300 hover:text-yellow-500 transition-colors"
+                                data-rating="1">⭐</button>
+                            <button type="button"
+                                class="rating-star text-3xl text-gray-300 hover:text-yellow-500 transition-colors"
+                                data-rating="2">⭐</button>
+                            <button type="button"
+                                class="rating-star text-3xl text-gray-300 hover:text-yellow-500 transition-colors"
+                                data-rating="3">⭐</button>
+                            <button type="button"
+                                class="rating-star text-3xl text-gray-300 hover:text-yellow-500 transition-colors"
+                                data-rating="4">⭐</button>
+                            <button type="button"
+                                class="rating-star text-3xl text-gray-300 hover:text-yellow-500 transition-colors"
+                                data-rating="5">⭐</button>
+                        </div>
+                        <input type="hidden" id="rating" value="0">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-sage-primary hover:bg-sage-darker text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-xl">
+                        Kirim Saran
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-sage-darker text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-display font-bold mb-4">Oemah Senara</h3>
+                    <p class="text-gray-200 mb-4">Tempat berkumpul yang hangat dengan hidangan lezat dan suasana yang
+                        nyaman.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/oemah.senara/" target="_blank"
+                            class="hover:text-sage-light transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-sage-light transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">Jam Operasional</h3>
+                    <ul class="text-gray-200 space-y-2">
+                        <li>Senin - Jumat: 10.00 - 22.00</li>
+                        <li>Sabtu - Minggu: 09.00 - 23.00</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-4">Kontak Kami</h3>
+                    <ul class="text-gray-200 space-y-2">
+                        <li>Alamat: Jl. Onta Baru No.23, Makassar</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/20 pt-6 text-center text-gray-300 text-sm">
+                <p>&copy; 2025 Oemah Senara. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle menu mobile
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Rating stars
+        const stars = document.querySelectorAll('.rating-star');
+        const ratingInput = document.getElementById('rating');
+
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                const rating = index + 1;
+                ratingInput.value = rating;
+
+                stars.forEach((s, i) => {
+                    s.classList.toggle('text-yellow-500', i < rating);
+                    s.classList.toggle('text-gray-300', i >= rating);
+                });
+            });
+        });
+
+        // Form submit
+        const form = document.querySelector('.suggestion-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih atas saran kamu!');
+            form.reset();
+
+            stars.forEach(s => {
+                s.classList.remove('text-yellow-500');
+                s.classList.add('text-gray-300');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
